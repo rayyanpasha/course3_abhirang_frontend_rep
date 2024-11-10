@@ -1,0 +1,189 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    color: #333; /* Dark text color */
+    background-color: #e8e4d4; /* Beige background */
+    line-height: 1.6; /* Improved line-height for better readability */
+    padding-bottom: 50px; /* Ensures space for footer or any content */
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+/* Header Styles */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px; /* Reduced padding for a cleaner top row */
+    background-color: #dcdad5; /* Beige background */
+    color: #333; /* Dark text */
+    border-bottom: 2px solid #556b2f; /* Olive Green border */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+}
+
+.logo {
+    width: 100px; /* Smaller logo size */
+    height: auto;
+}
+
+.social-icons a img {
+    width: 24px;
+    margin-left: 15px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.social-icons a:hover img {
+    opacity: 0.7; /* Hover effect on social icons */
+}
+
+/* Navigation Bar */
+.navbar {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 15px;
+    background-color: #556b2f; /* Olive Green background */
+    font-size: 1.1em;
+    font-weight: bold;
+    border-top: 2px solid #333; /* Border at top of navbar */
+}
+
+.navbar a {
+    color: #e8e4d4; /* Beige text */
+    padding: 10px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.navbar a:hover {
+    color: #dcdad5; /* Light beige on hover */
+}
+
+.navbar a.active {
+    color: #fff; /* White color for active page */
+    background-color: #556b2f; /* Olive Green background for active link */
+    border-radius: 5px;
+}
+
+/* Best Selling Section Header */
+.section-header {
+    text-align: center;
+    font-size: 2.2em;
+    font-weight: bold;
+    margin: 50px 0;
+    color: #006400; /* Vile Green for Best Selling Art */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #006400; /* Underline with Vile Green */
+    animation: fadeIn 1.5s ease-out;
+}
+
+/* Product Grid */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Flexible grid */
+    gap: 30px;
+    padding: 0 20px;
+    margin-bottom: 50px; /* Bottom spacing */
+}
+
+/* Product Card */
+.product-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.product-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.product-image:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+.product-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333; /* Dark gray text for product title */
+}
+
+.product-price {
+    font-size: 1.2em;
+    color: #dcdad5; /* Light beige for price */
+    margin-bottom: 15px;
+}
+
+.product-original-price {
+    font-size: 1em;
+    text-decoration: line-through;
+    color: #aaa; /* Light gray for original price */
+}
+
+.product-wishlist {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    color: #f44336; /* Red color for wishlist icon */
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.product-wishlist:hover {
+    color: #d32f2f; /* Darker red on hover */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for medium screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .product-grid {
+        grid-template-columns: 1fr; /* 1 column for small screens */
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

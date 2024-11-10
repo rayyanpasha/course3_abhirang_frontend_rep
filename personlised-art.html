@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalized Art - AbhiRang</title>
+    <link rel="stylesheet" href="personalised-art.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <img src="logo.png" alt="AbhiRang Logo" class="logo">
+        <div class="social-icons">
+            <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
+                <img src="instagram-icon.png" alt="Instagram">
+            </a>
+            <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
+                <img src="facebook-icon.png" alt="Facebook">
+            </a>
+            <a href="https://www.pinterest.com" target="_blank" aria-label="Pinterest">
+                <img src="pinterest-icon.png" alt="Pinterest">
+            </a>
+            <a href="profile.html" aria-label="User Profile">
+                <img src="user-icon.png" alt="User Profile">
+            </a>
+            <a href="cart.html" aria-label="Shopping Cart">
+                <img src="cart-icon.png" alt="Shopping Cart">
+            </a>
+        </div>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="category.html">Category</a>
+        <a href="home.html">Home</a>
+        <a href="personalised-art.html" class="active">Personalised Art</a>
+    </nav>
+
+    <!-- Personalised Art Page Header -->
+    <section class="section-header">
+        Create Your Personalized Art
+    </section>
+
+    <!-- Personalized Art Form -->
+    <main class="personalised-art-form">
+        <div class="form-container">
+            <form action="#" method="POST">
+                <label for="artist">Select Artist</label>
+                <select id="artist" name="artist">
+                    <option value="artist1">Artist 1</option>
+                    <option value="artist2">Artist 2</option>
+                    <option value="artist3">Artist 3</option>
+                </select>
+
+                <label for="style">Choose Art Style</label>
+                <select id="style" name="style">
+                    <option value="abstract">Abstract</option>
+                    <option value="landscape">Landscape</option>
+                    <option value="portrait">Portrait</option>
+                    <option value="modern">Modern</option>
+                </select>
+
+                <label for="image-upload">Upload Image (if any)</label>
+                <input type="file" id="image-upload" name="image-upload">
+
+                <label for="instructions">Additional Instructions</label>
+                <textarea id="instructions" name="instructions" placeholder="Describe your preferences..."></textarea>
+
+                <div class="submit-btn-container">
+                    <button type="submit" class="submit-btn">Submit Request</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+</body>
+</html>

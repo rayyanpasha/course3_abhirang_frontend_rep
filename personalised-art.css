@@ -1,0 +1,138 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #4d4d4d;
+}
+
+/* Header Styles */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #f4f4f4;
+    border-bottom: 2px solid #614d32;
+}
+
+.logo {
+    width: 120px;
+}
+
+.social-icons a img {
+    width: 24px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    padding: 10px 0;
+    font-weight: bold;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #4d4d4d;
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+    color: #5a805a;
+}
+
+.navbar a.active {
+    color: #5a805a;
+}
+
+/* Section Header */
+.section-header {
+    font-size: 2em;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin: 40px 0;
+}
+
+/* Personalised Art Form */
+.personalised-art-form {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.form-container {
+    background-color: #fff;
+    padding: 30px;
+    width: 100%;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    color: #333;
+    display: block;
+}
+
+form select,
+form textarea,
+form input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #A99E8C;
+    border-radius: 5px;
+    background-color: #f4f4f4;
+    font-size: 1em;
+    color: #333;
+}
+
+form textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+.submit-btn-container {
+    display: flex;
+    justify-content: center;
+}
+
+.submit-btn {
+    background-color: #5a805a;
+    color: #fff;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #4d704d;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    .personalised-art-form {
+        padding: 10px;
+    }
+
+    .form-container {
+        width: 100%;
+        padding: 20px;
+    }
+}
