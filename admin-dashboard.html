@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="admin-dashboard.css">
+</head>
+<body>
+
+    <header class="header">
+        <img src="logo.png" alt="AbhiRang Logo" class="logo">
+        <div class="social-icons">
+            <a href="profile.html" aria-label="User Profile">
+                <img src="user-icon.png" alt="User Profile">
+            </a>
+        </div>
+    </header>
+
+    <nav class="navbar">
+        <a href="home.html">Home</a>
+        <a href="admin-dashboard.html" class="active">Dashboard</a>
+    </nav>
+
+    <div class="dashboard-container">
+        <aside class="dashboard-sidebar">
+            <a href="#" onclick="showSection('admin-details')">Admin Details</a>
+            <a href="#" onclick="showSection('order-management')">Order Management</a>
+            <a href="#" onclick="showSection('inventory-management')">Inventory Management</a>
+            <a href="#" onclick="showSection('user-management')">User Management</a>
+        </aside>
+
+        <main class="dashboard-content">
+            <section id="admin-details" class="dashboard-section active">
+                <h2>Admin Details</h2>
+                <p>Manage your admin profile.</p>
+            </section>
+            <section id="order-management" class="dashboard-section">
+                <h2>Order Management</h2>
+                <p>Manage and track all customer orders.</p>
+            </section>
+            <section id="inventory-management" class="dashboard-section">
+                <h2>Inventory Management</h2>
+                <p>Oversee and manage product inventory.</p>
+            </section>
+            <section id="user-management" class="dashboard-section">
+                <h2>User Management</h2>
+                <p>Manage user accounts and permissions.</p>
+            </section>
+        </main>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

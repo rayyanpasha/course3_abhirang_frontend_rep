@@ -1,0 +1,160 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    background-color: #e8e4d4; /* Beige background */
+    line-height: 1.6;
+    padding-bottom: 50px;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 20px;
+    background-color: #dcdad5; /* Light beige background */
+    color: #333;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    width: 100px;
+    height: auto;
+}
+
+.social-icons a img {
+    width: 24px;
+    margin-left: 15px;
+}
+
+/* Navigation Bar */
+.navbar {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 15px;
+    background-color: #556b2f; /* Olive Green */
+}
+
+.navbar a {
+    color: #e8e4d4;
+    text-decoration: none;
+    padding: 10px;
+}
+
+.navbar a.active {
+    color: #fff;
+    background-color: #333;
+    border-radius: 5px;
+}
+
+/* Dashboard Layout */
+.dashboard-container {
+    display: flex;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.dashboard-sidebar {
+    width: 250px;
+    background-color: #556b2f;
+    color: #e8e4d4;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.dashboard-sidebar a {
+    display: block;
+    padding: 12px;
+    color: #e8e4d4;
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: background-color 0.3s;
+}
+
+.dashboard-sidebar a:hover {
+    background-color: #333;
+}
+
+.dashboard-content {
+    flex: 1;
+    margin-left: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Dashboard Section */
+.dashboard-section {
+    display: none;
+}
+
+.dashboard-section.active {
+    display: block;
+}
+
+.dashboard-section h2 {
+    font-size: 1.8em;
+    color: #006400; /* Dark green */
+    border-bottom: 2px solid #006400;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* Styling for table (Your Orders) */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.table th {
+    background-color: #556b2f;
+    color: #fff;
+}
+
+.table td {
+    background-color: #f9f9f9;
+}
+
+.table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Form Styling (Edit details, reviews) */
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button {
+    padding: 12px 20px;
+    background-color: #556b2f;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #333;
+}

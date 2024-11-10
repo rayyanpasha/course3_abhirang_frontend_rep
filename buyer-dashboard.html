@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buyer Dashboard</title>
+    <link rel="stylesheet" href="buyer-dashboard.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <img src="logo.png" alt="AbhiRang Logo" class="logo">
+        <div class="social-icons">
+            <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
+                <img src="instagram-icon.png" alt="Instagram">
+            </a>
+            <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
+                <img src="facebook-icon.png" alt="Facebook">
+            </a>
+            <a href="profile.html" aria-label="User Profile">
+                <img src="user-icon.png" alt="User Profile">
+            </a>
+        </div>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="home.html">Home</a>
+        <a href="category.html">Category</a>
+        <a href="personalised-art.html">Personalised Art</a>
+        <a href="buyer-dashboard.html" class="active">Dashboard</a>
+    </nav>
+
+    <!-- Dashboard Layout -->
+    <div class="dashboard-container">
+        <aside class="dashboard-sidebar">
+            <a href="#" onclick="showSection('user-details')">User Details</a>
+            <a href="#" onclick="showSection('orders')">Your Orders</a>
+            <a href="#" onclick="showSection('reviews')">Your Reviews</a>
+        </aside>
+
+        <main class="dashboard-content">
+            <section id="user-details" class="dashboard-section active">
+                <h2>User Details</h2>
+                <p>Manage your personal information here.</p>
+            </section>
+            <section id="orders" class="dashboard-section">
+                <h2>Your Orders</h2>
+                <p>View and track your orders.</p>
+            </section>
+            <section id="reviews" class="dashboard-section">
+                <h2>Your Reviews</h2>
+                <p>Manage your product reviews.</p>
+            </section>
+        </main>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
