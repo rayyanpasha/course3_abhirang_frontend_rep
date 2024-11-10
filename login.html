@@ -22,12 +22,6 @@
             <a href="https://www.pinterest.com" target="_blank" aria-label="Pinterest">
                 <img src="pinterest-icon.png" alt="Pinterest">
             </a>
-            <a href="profile.html" aria-label="User Profile">
-                <img src="user-icon.png" alt="User Profile">
-            </a>
-            <a href="cart.html" aria-label="Shopping Cart">
-                <img src="cart-icon.png" alt="Shopping Cart">
-            </a>
         </div>
     </header>
 
@@ -35,23 +29,28 @@
     <nav class="navbar">
         <a href="category.html">Category</a>
         <a href="home.html">Home</a>
-        <a href="personalised-art.html">Personalised Art</a>
+        <a href="login.html" class="active">Login</a>
     </nav>
 
-    <!-- Login Form Section -->
-    <main class="form-container">
-        <h1>Login</h1>
-        <p>Please enter your credentials to login.</p>
+    <!-- Login Section -->
+    <section class="login-section">
+        <div class="form-container">
+            <form action="login" method="POST">
+                <h2>Login to Your Account</h2>
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
 
-        <form action="#" method="post">
-            <input type="email" placeholder="Email Address" required>
-            <input type="password" placeholder="Password" required>
-            
-            <button type="submit" class="submit-btn">Login</button>
-        </form>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
 
-        <p>Don't have an account? <a href="register.html">Register Here</a></p>
-    </main>
+                <div class="submit-btn-container">
+                    <button type="submit" class="submit-btn">Login</button>
+                </div>
+
+                <p class="signup-link">Don't have an account? <a href="registration.html">Sign up</a></p>
+            </form>
+        </div>
+    </section>
 
 </body>
 

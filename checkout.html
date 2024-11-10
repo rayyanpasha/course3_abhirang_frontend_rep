@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - AbhiRang</title>
+    <link rel="stylesheet" href="checkout.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <img src="logo.png" alt="AbhiRang Logo" class="logo">
+        <div class="social-icons">
+            <a href="https://www.instagram.com" target="_blank"><img src="instagram-icon.png" alt="Instagram"></a>
+            <a href="https://www.facebook.com" target="_blank"><img src="facebook-icon.png" alt="Facebook"></a>
+            <a href="https://www.pinterest.com" target="_blank"><img src="pinterest-icon.png" alt="Pinterest"></a>
+        </div>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="home.html">Home</a>
+        <a href="category.html">Category</a>
+        <a href="cart.html">Cart</a>
+        <a href="checkout.html" class="active">Checkout</a>
+    </nav>
+
+    <!-- Checkout Form -->
+    <main class="checkout-container">
+        <h2>Checkout</h2>
+        <form class="checkout-form">
+            <div class="form-section">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required placeholder="Enter your name">
+
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required placeholder="Enter your email">
+
+                <label for="address">Shipping Address</label>
+                <textarea id="address" name="address" required placeholder="Enter your shipping address"></textarea>
+
+                <label for="payment-method">Payment Method</label>
+                <select id="payment-method" name="payment-method">
+                    <option value="credit-card">UPI</option>
+                    <option value="paypal">Bank Transfer</option>
+                    <option value="bank-transfer">Debit/Credit Card</option>
+                </select>
+            </div>
+
+            <button type="submit" class="submit-btn">Place Order</button>
+        </form>
+    </main>
+</body>
+</html>

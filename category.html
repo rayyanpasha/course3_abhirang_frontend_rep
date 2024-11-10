@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Category Selection - AbhiRang</title>
+    <title>Category - AbhiRang</title>
     <link rel="stylesheet" href="category.css">
 </head>
 
@@ -22,12 +22,6 @@
             <a href="https://www.pinterest.com" target="_blank" aria-label="Pinterest">
                 <img src="pinterest-icon.png" alt="Pinterest">
             </a>
-            <a href="profile.html" aria-label="User Profile">
-                <img src="user-icon.png" alt="User Profile">
-            </a>
-            <a href="cart.html" aria-label="Shopping Cart">
-                <img src="cart-icon.png" alt="Shopping Cart">
-            </a>
         </div>
     </header>
 
@@ -38,36 +32,23 @@
         <a href="personalised-art.html">Personalised Art</a>
     </nav>
 
-    <!-- Category Header Section -->
-    <section class="category-header">
-        <h1>Select a Category</h1>
-        <p>Explore our art collection by category.</p>
-    </section>
+    <!-- Category Section -->
+    <section class="category-section">
+        <div class="category-list">
+            <div class="category-item">
+                <a href="product-listing.html?category=landscape">
+                    <img src="landscape-category.jpg" alt="Landscape" class="category-image">
+                    <h3>Landscape</h3>
+                </a>
+            </div>
 
-    <!-- Category List Section -->
-    <section class="category-list">
-        <div class="category-card">
-            <a href="product-listing.html?category=landscape">
-                <img src="landscape-category.jpg" alt="Landscape Art">
-                <h3>Landscape Art</h3>
-            </a>
+            <div class="category-item">
+                <a href="product-listing.html?category=abstract">
+                    <img src="abstract-category.jpg" alt="Abstract" class="category-image">
+                    <h3>Abstract</h3>
+                </a>
+            </div>
         </div>
-
-        <div class="category-card">
-            <a href="product-listing.html?category=abstract">
-                <img src="abstract-category.jpg" alt="Abstract Art">
-                <h3>Abstract Art</h3>
-            </a>
-        </div>
-
-        <div class="category-card">
-            <a href="product-listing.html?category=portrait">
-                <img src="portrait-category.jpg" alt="Portrait Art">
-                <h3>Portrait Art</h3>
-            </a>
-        </div>
-
-        <!-- More categories can be added as needed -->
     </section>
 </body>
 

@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart - AbhiRang</title>
     <link rel="stylesheet" href="cart.css">
 </head>
+
 <body>
     <!-- Header -->
     <header class="header">
@@ -23,9 +25,6 @@
             <a href="profile.html" aria-label="User Profile">
                 <img src="user-icon.png" alt="User Profile">
             </a>
-            <a href="cart.html" aria-label="Shopping Cart">
-                <img src="cart-icon.png" alt="Shopping Cart">
-            </a>
         </div>
     </header>
 
@@ -33,60 +32,37 @@
     <nav class="navbar">
         <a href="category.html">Category</a>
         <a href="home.html">Home</a>
-        <a href="personalised-art.html">Personalised Art</a>
+        <a href="cart.html" class="active">Cart</a>
     </nav>
 
-    <!-- Cart Page Header -->
-    <section class="page-header">
-        Your Shopping Cart
-    </section>
+    <!-- Cart Section -->
+    <section class="cart-section">
+        <div class="cart-items">
+            <div class="cart-item">
+                <img src="art1.jpg" alt="Landscape T34 Artwork" class="cart-item-image">
+                <div class="cart-item-details">
+                    <h3 class="cart-item-title">Landscape T34 (48*36)</h3>
+                    <p class="cart-item-price">Rs. 20,999/-</p>
+                    <button class="remove-item">Remove</button>
+                </div>
+            </div>
 
-    <!-- Cart Items Section -->
-    <main class="cart-items">
-        <div class="cart-item">
-            <div class="cart-item-image">
-                <img src="art1.jpg" alt="Landscape T34 Artwork">
-            </div>
-            <div class="cart-item-info">
-                <div class="cart-item-title">Landscape T34 (48*36)</div>
-                <div class="cart-item-price">Rs. 20,999/-</div>
-            </div>
-            <div class="cart-item-quantity">
-                <input type="number" value="1" min="1" max="10">
-            </div>
-            <div class="cart-item-remove">
-                <button class="remove-btn">Remove</button>
+            <div class="cart-item">
+                <img src="art2.jpg" alt="Landscape T36 Artwork" class="cart-item-image">
+                <div class="cart-item-details">
+                    <h3 class="cart-item-title">Landscape T36 (40*60)</h3>
+                    <p class="cart-item-price">Rs. 19,999/-</p>
+                    <button class="remove-item">Remove</button>
+                </div>
             </div>
         </div>
 
-        <!-- Repeat the cart-item for each item in the cart -->
-        <div class="cart-item">
-            <div class="cart-item-image">
-                <img src="art2.jpg" alt="Landscape T36 Artwork">
-            </div>
-            <div class="cart-item-info">
-                <div class="cart-item-title">Landscape T36 (40*60)</div>
-                <div class="cart-item-price">Rs. 19,999/-</div>
-            </div>
-            <div class="cart-item-quantity">
-                <input type="number" value="1" min="1" max="10">
-            </div>
-            <div class="cart-item-remove">
-                <button class="remove-btn">Remove</button>
-            </div>
-        </div>
-
-        <!-- Total Price Section -->
-        <div class="cart-total">
-            <div class="total-label">Total</div>
-            <div class="total-amount">Rs. 40,998/-</div>
-        </div>
-
-        <!-- Checkout Button -->
-        <div class="checkout-section">
+        <!-- Checkout Section -->
+        <div class="checkout">
+            <p class="total-price">Total: Rs. 40,998/-</p>
             <button class="checkout-btn">Proceed to Checkout</button>
         </div>
-    </main>
-
+    </section>
 </body>
+
 </html>
