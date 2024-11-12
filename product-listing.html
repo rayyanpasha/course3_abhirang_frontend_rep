@@ -5,28 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Listing - AbhiRang</title>
-    <link rel="stylesheet" href="product-listing.css">
+    <link rel="stylesheet" href="main.css">
 </head>
 
 <body>
     <!-- Header -->
     <header class="header">
-        <img src="logo.png" alt="AbhiRang Logo" class="logo">
+        <a href="home.html" class="logo-link">
+            <img src="logo.png" alt="AbhiRang Logo" class="logo">
+            <span class="logo-text">AbhiRang</span>
+        </a>
         <div class="social-icons">
             <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
-                <img src="instagram-icon.png" alt="Instagram">
+                <img src="/assets/icons/instagram-icon.png" alt="Instagram">
             </a>
             <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
-                <img src="facebook-icon.png" alt="Facebook">
+                <img src="/assets/icons/facebook-icon.png" alt="Facebook">
             </a>
             <a href="https://www.pinterest.com" target="_blank" aria-label="Pinterest">
-                <img src="pinterest-icon.png" alt="Pinterest">
+                <img src="/assets/icons/pinterest-icon.png" alt="Pinterest">
             </a>
             <a href="profile.html" aria-label="User Profile">
-                <img src="user-icon.png" alt="User Profile">
+                <img src="/assets/icons/user-icon.png" alt="User Profile">
             </a>
             <a href="cart.html" aria-label="Shopping Cart">
-                <img src="cart-icon.png" alt="Shopping Cart">
+                <img src="/assets/icons/cart-icon.png" alt="Shopping Cart">
             </a>
         </div>
     </header>
@@ -38,47 +41,31 @@
         <a href="personalised-art.html">Personalised Art</a>
     </nav>
 
-    <!-- Category Page Header -->
-    <section class="category-header">
-        <h1>Product listing with Desired Category</h1>
-        
+    <!-- Product Listing Section -->
+    <section class="product-listing">
+        <h1>Product Listing</h1>
+
+        <!-- Product Grid -->
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="art1.jpg" alt="Product Image" class="product-image">
+                <p class="product-title">Landscape T34 (48*36)</p>
+                <p class="product-price">Rs. 20,999/-</p>
+                <a href="product-details.html" class="view-details">View Details</a>
+            </div>
+
+            <div class="product-card">
+                <img src="art2.jpg" alt="Product Image" class="product-image">
+                <p class="product-title">Landscape T36 (40*60)</p>
+                <p class="product-price">Rs. 19,999/-</p>
+                <a href="product-details.html" class="view-details">View Details</a>
+            </div>
+        </div>
     </section>
 
-    <!-- Product Grid Section -->
-    <main class="product-grid">
-        <div class="product-card">
-            <img src="art1.jpg" alt="Landscape T34 Artwork" class="product-image">
-            <div class="product-info">
-                <div class="product-title">Landscape T34 (48*36)</div>
-                <div class="product-price">Rs. 20,999/- <span class="product-original-price">Rs. 25,245/-</span></div>
-                <button class="add-to-cart-btn">Add to Cart</button>
-                <button class="wishlist-btn">♡</button>
-            </div>
-        </div>
-
-        <div class="product-card">
-            <img src="art2.jpg" alt="Landscape T36 Artwork" class="product-image">
-            <div class="product-info">
-                <div class="product-title">Landscape T36 (40*60)</div>
-                <div class="product-price">Rs. 19,999/- <span class="product-original-price">Rs. 36,015/-</span></div>
-                <button class="add-to-cart-btn">Add to Cart</button>
-                <button class="wishlist-btn">♡</button>
-            </div>
-        </div>
-
-        <div class="product-card">
-            <img src="art3.jpg" alt="Ocean Breeze Artwork" class="product-image">
-            <div class="product-info">
-                <div class="product-title">Ocean Breeze (36*48)</div>
-                <div class="product-price">Rs. 15,499/- <span class="product-original-price">Rs. 18,999/-</span></div>
-                <button class="add-to-cart-btn">Add to Cart</button>
-                <button class="wishlist-btn">♡</button>
-            </div>
-        </div>
-
-        <!-- Repeat .product-card for more products -->
-    </main>
-
+    <footer>
+        <p>© 2024 AbhiRang</p>
+    </footer>
 </body>
 
 </html>

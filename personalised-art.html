@@ -5,22 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personalised Art - AbhiRang</title>
-    <link rel="stylesheet" href="personalised-art.css">
+    <link rel="stylesheet" href="main.css">
 </head>
 
 <body>
     <!-- Header -->
     <header class="header">
-        <img src="logo.png" alt="AbhiRang Logo" class="logo">
+        <a href="home.html" class="logo-link">
+            <img src="logo.png" alt="AbhiRang Logo" class="logo">
+            <span class="logo-text">AbhiRang</span>
+        </a>
         <div class="social-icons">
             <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
-                <img src="instagram-icon.png" alt="Instagram">
+                <img src="/assets/icons/instagram-icon.png" alt="Instagram">
             </a>
             <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
-                <img src="facebook-icon.png" alt="Facebook">
+                <img src="/assets/icons/facebook-icon.png" alt="Facebook">
             </a>
             <a href="https://www.pinterest.com" target="_blank" aria-label="Pinterest">
-                <img src="pinterest-icon.png" alt="Pinterest">
+                <img src="/assets/icons/pinterest-icon.png" alt="Pinterest">
+            </a>
+            <a href="profile.html" aria-label="User Profile">
+                <img src="/assets/icons/user-icon.png" alt="User Profile">
+            </a>
+            <a href="cart.html" aria-label="Shopping Cart">
+                <img src="/assets/icons/cart-icon.png" alt="Shopping Cart">
             </a>
         </div>
     </header>
@@ -34,21 +43,32 @@
 
     <!-- Personalised Art Section -->
     <section class="personalised-art-section">
-        <h2>Get Your Personalised Artwork</h2>
-        <form action="submit" method="POST" class="art-form">
-            <label for="instructions">Special Instructions</label>
-            <textarea id="instructions" name="instructions" rows="4" placeholder="Describe your personalised request"></textarea>
-
-            <label for="artist">Select Artist</label>
-            <select id="artist" name="artist">
-                <option value="artist1">Artist 1</option>
-                <option value="artist2">Artist 2</option>
+        <h1>Customize Your Artwork</h1>
+        <form class="personalised-art-form">
+            <label for="art-type">Select Art Type</label>
+            <select id="art-type">
+                <option value="landscape">Landscape</option>
+                <option value="portrait">Portrait</option>
+                <option value="abstract">Abstract</option>
             </select>
 
-            <button type="submit" class="submit-btn">Submit Request</button>
+            <label for="size">Select Size</label>
+            <select id="size">
+                <option value="small">Small</option>
+                <option value="medium">Medium</option>
+                <option value="large">Large</option>
+            </select>
+
+            <label for="message">Add Custom Message</label>
+            <textarea id="message" placeholder="Your message here..."></textarea>
+
+            <button type="submit">Create Artwork</button>
         </form>
     </section>
+
+    <footer>
+        <p>© 2024 AbhiRang</p>
+    </footer>
 </body>
 
 </html>
-

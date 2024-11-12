@@ -5,40 +5,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Results - AbhiRang</title>
-    <link rel="stylesheet" href="search-results.css">
+    <link rel="stylesheet" href="main.css">
 </head>
 
 <body>
+    <!-- Header -->
     <header class="header">
-        <img src="logo.png" alt="AbhiRang Logo" class="logo">
-        <nav class="navbar">
-            <a href="home.html">Home</a>
-            <a href="category.html">Category</a>
-            <a href="personalised-art.html">Personalised Art</a>
-        </nav>
+        <a href="home.html" class="logo-link">
+            <img src="logo.png" alt="AbhiRang Logo" class="logo">
+            <span class="logo-text">AbhiRang</span>
+        </a>
+        <div class="social-icons">
+            <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
+                <img src="/assets/icons/instagram-icon.png" alt="Instagram">
+            </a>
+            <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
+                <img src="/assets/icons/facebook-icon.png" alt="Facebook">
+            </a>
+            <a href="https://www.pinterest.com" target="_blank" aria-label="Pinterest">
+                <img src="/assets/icons/pinterest-icon.png" alt="Pinterest">
+            </a>
+            <a href="profile.html" aria-label="User Profile">
+                <img src="/assets/icons/user-icon.png" alt="User Profile">
+            </a>
+            <a href="cart.html" aria-label="Shopping Cart">
+                <img src="/assets/icons/cart-icon.png" alt="Shopping Cart">
+            </a>
+        </div>
     </header>
 
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="category.html">Category</a>
+        <a href="home.html">Home</a>
+        <a href="personalised-art.html">Personalised Art</a>
+    </nav>
+
+    <!-- Search Results Section -->
     <section class="search-results">
         <h1>Search Results</h1>
-        <div class="results">
+
+        <div class="product-grid">
+            <!-- Product results dynamically populated -->
             <div class="product-card">
-                <img src="art1.jpg" alt="Artwork" class="product-image">
-                <div class="product-title">Landscape T34 (48*36)</div>
-                <div class="product-price">Rs. 20,999/-</div>
-                <button class="product-wishlist">♡</button>
+                <img src="art1.jpg" alt="Product Image" class="product-image">
+                <p class="product-title">Landscape T34 (48*36)</p>
+                <p class="product-price">Rs. 20,999/-</p>
+                <a href="product-details.html" class="view-details">View Details</a>
             </div>
+
             <div class="product-card">
-                <img src="art2.jpg" alt="Artwork" class="product-image">
-                <div class="product-title">Landscape T36 (40*60)</div>
-                <div class="product-price">Rs. 30,999/-</div>
-                <button class="product-wishlist">♡</button>
+                <img src="art2.jpg" alt="Product Image" class="product-image">
+                <p class="product-title">Landscape T36 (40*60)</p>
+                <p class="product-price">Rs. 19,999/-</p>
+                <a href="product-details.html" class="view-details">View Details</a>
             </div>
-            <!-- Repeat product cards based on search results -->
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2024 AbhiRang. All rights reserved.</p>
+        <p>© 2024 AbhiRang</p>
     </footer>
 </body>
 

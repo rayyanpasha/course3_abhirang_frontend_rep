@@ -5,28 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - AbhiRang</title>
-    <link rel="stylesheet" href="register.css">
+    <link rel="stylesheet" href="main.css">
 </head>
 
 <body>
     <!-- Header -->
     <header class="header">
-        <img src="logo.png" alt="AbhiRang Logo" class="logo">
+        <a href="home.html" class="logo-link">
+            <img src="logo.png" alt="AbhiRang Logo" class="logo">
+            <span class="logo-text">AbhiRang</span>
+        </a>
         <div class="social-icons">
             <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
-                <img src="instagram-icon.png" alt="Instagram">
+                <img src="/assets/icons/instagram-icon.png" alt="Instagram">
             </a>
             <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
-                <img src="facebook-icon.png" alt="Facebook">
+                <img src="/assets/icons/facebook-icon.png" alt="Facebook">
             </a>
             <a href="https://www.pinterest.com" target="_blank" aria-label="Pinterest">
-                <img src="pinterest-icon.png" alt="Pinterest">
+                <img src="/assets/icons/pinterest-icon.png" alt="Pinterest">
             </a>
             <a href="profile.html" aria-label="User Profile">
-                <img src="user-icon.png" alt="User Profile">
+                <img src="/assets/icons/user-icon.png" alt="User Profile">
             </a>
             <a href="cart.html" aria-label="Shopping Cart">
-                <img src="cart-icon.png" alt="Shopping Cart">
+                <img src="/assets/icons/cart-icon.png" alt="Shopping Cart">
             </a>
         </div>
     </header>
@@ -38,36 +41,32 @@
         <a href="personalised-art.html">Personalised Art</a>
     </nav>
 
-    <!-- Registration Form Section -->
-    <main class="form-container">
-        <h1>Create Your Account</h1>
-        <p>Please fill in the details to create an account.</p>
+    <!-- Register Form Section -->
+    <section class="register-form-section">
+        <div class="register-form-container">
+            <h1>Register</h1>
+            <form action="/register" method="POST">
+                <div class="input-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="register-btn">Register</button>
+            </form>
+            <p>Already have an account? <a href="login.html">Login here</a></p>
+        </div>
+    </section>
 
-        <form action="#" method="post">
-            <input type="text" placeholder="Full Name" required>
-            <input type="email" placeholder="Email Address" required>
-            <input type="password" placeholder="Password" required>
-            <input type="text" placeholder="Date of Birth (DD/MM/YYYY)" required>
-            <input type="email" placeholder="Confirm Email Address" required>
-            <input type="password" placeholder="Confirm Password" required>
-
-            <div class="user-type-selection">
-                <label>
-                    <input type="radio" name="userType" value="buyer" checked>
-                    <span class="button buyer">Buyer</span>
-                </label>
-                <label>
-                    <input type="radio" name="userType" value="artist">
-                    <span class="button artist">Artist</span>
-                </label>
-            </div>
-
-            <button type="submit" class="submit-btn">Register</button>
-        </form>
-
-        <p>Already have an account? <a href="login.html">Login Here</a></p>
-    </main>
-
+    <footer>
+        <p>© 2024 AbhiRang</p>
+    </footer>
 </body>
 
 </html>

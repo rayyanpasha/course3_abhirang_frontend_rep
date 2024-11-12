@@ -1,53 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artist Dashboard</title>
-    <link rel="stylesheet" href="artist-dashboard.css">
+    <title>Artist Dashboard - AbhiRang</title>
+    <link rel="stylesheet" href="main.css">
 </head>
-<body>
 
+<body>
+    <!-- Header -->
     <header class="header">
-        <img src="logo.png" alt="AbhiRang Logo" class="logo">
+        <a href="home.html" class="logo-link">
+            <img src="logo.png" alt="AbhiRang Logo" class="logo">
+            <span class="logo-text">AbhiRang</span>
+        </a>
         <div class="social-icons">
             <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
-                <img src="instagram-icon.png" alt="Instagram">
+                <img src="/assets/icons/instagram-icon.png" alt="Instagram">
+            </a>
+            <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
+                <img src="/assets/icons/facebook-icon.png" alt="Facebook">
+            </a>
+            <a href="https://www.pinterest.com" target="_blank" aria-label="Pinterest">
+                <img src="/assets/icons/pinterest-icon.png" alt="Pinterest">
             </a>
             <a href="profile.html" aria-label="User Profile">
-                <img src="user-icon.png" alt="User Profile">
+                <img src="/assets/icons/user-icon.png" alt="User Profile">
+            </a>
+            <a href="cart.html" aria-label="Shopping Cart">
+                <img src="/assets/icons/cart-icon.png" alt="Shopping Cart">
             </a>
         </div>
     </header>
 
+    <!-- Navigation Bar -->
     <nav class="navbar">
-        <a href="home.html">Home</a>
         <a href="artist-dashboard.html" class="active">Dashboard</a>
+        <a href="manage-art.html">Manage Art</a>
+        <a href="sales.html">Sales</a>
+        <a href="profile.html">Profile</a>
     </nav>
 
-    <div class="dashboard-container">
-        <aside class="dashboard-sidebar">
-            <a href="#" onclick="showSection('artist-details')">Artist Details</a>
-            <a href="#" onclick="showSection('order-management')">Order Management</a>
-            <a href="#" onclick="showSection('inventory-management')">Inventory Management</a>
-        </aside>
+    <!-- Artist Dashboard Section -->
+    <section class="artist-dashboard">
+        <h1>Artist Dashboard</h1>
+        <div class="dashboard-cards">
+            <div class="dashboard-card">
+                <h3>Total Art Pieces</h3>
+                <p>15</p>
+            </div>
+            <div class="dashboard-card">
+                <h3>Total Sales</h3>
+                <p>Rs. 250,000/-</p>
+            </div>
+        </div>
+    </section>
 
-        <main class="dashboard-content">
-            <section id="artist-details" class="dashboard-section active">
-                <h2>Artist Details</h2>
-                <p>Manage your artist profile and details.</p>
-            </section>
-            <section id="order-management" class="dashboard-section">
-                <h2>Order Management</h2>
-                <p>View and manage customer orders.</p>
-            </section>
-            <section id="inventory-management" class="dashboard-section">
-                <h2>Inventory Management</h2>
-                <p>Manage your products and stock levels.</p>
-            </section>
-        </main>
-    </div>
-
-    <script src="dashboard.js"></script>
+    <footer>
+        <p>© 2024 AbhiRang</p>
+    </footer>
 </body>
+
 </html>

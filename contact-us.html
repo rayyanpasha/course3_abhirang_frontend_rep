@@ -1,36 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - AbhiRang</title>
-    <link rel="stylesheet" href="contact-us.css">
+    <link rel="stylesheet" href="main.css">
 </head>
-
 <body>
+    <!-- Header -->
     <header class="header">
-        <img src="logo.png" alt="AbhiRang Logo" class="logo">
-        <nav class="navbar">
-            <a href="home.html">Home</a>
-            <a href="about-us.html">About Us</a>
-            <a href="contact-us.html" class="active">Contact Us</a>
-        </nav>
+        <a href="home.html" class="logo-container">
+            <img src="logo.png" alt="AbhiRang Logo" class="logo">
+            <span class="logo-text">AbhiRang</span>
+        </a>
+        <div class="social-icons">
+            <!-- Social icons here -->
+        </div>
     </header>
 
-    <section class="contact-us">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="category.html">Category</a>
+        <a href="home.html" class="active">Home</a>
+        <a href="personalised-art.html">Personalised Art</a>
+        <a href="about-us.html">About Us</a>
+        <a href="contact-us.html" class="active">Contact Us</a> <!-- Current page highlighted -->
+    </nav>
+
+    <!-- Contact Us Section -->
+    <section class="contact-us-section">
         <h1>Contact Us</h1>
-        <form action="#" method="POST" class="contact-form">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
+        <p>If you have any questions, inquiries, or feedback, please feel free to reach out to us! We'd love to hear from you.</p>
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+        <!-- Contact Form -->
+        <form action="/submit-form" method="POST" class="contact-form">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            </div>
 
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" rows="4" required></textarea>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
 
-            <button type="submit">Send Message</button>
+            <div class="form-group">
+                <label for="message">Your Message</label>
+                <textarea id="message" name="message" placeholder="Write your message" required></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Send Message</button>
         </form>
     </section>
 
@@ -38,5 +57,4 @@
         <p>&copy; 2024 AbhiRang. All rights reserved.</p>
     </footer>
 </body>
-
 </html>

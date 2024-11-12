@@ -5,40 +5,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - AbhiRang</title>
-    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="main.css">
 </head>
 
 <body>
-    <!-- Header -->
+
     <header class="header">
-        <img src="logo.png" alt="AbhiRang Logo" class="logo">
+        <a href="home.html" class="logo-container">
+            <img src="logo.png" alt="AbhiRang Logo" class="logo">
+            <span class="logo-text">AbhiRang</span>
+        </a>
         <div class="social-icons">
             <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
-                <img src="instagram-icon.png" alt="Instagram">
+                <img src="/assets/icons/instagram-icon.png" alt="Instagram">
             </a>
             <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
-                <img src="facebook-icon.png" alt="Facebook">
+                <img src="/assets/icons/facebook-icon.png" alt="Facebook">
             </a>
             <a href="https://www.pinterest.com" target="_blank" aria-label="Pinterest">
-                <img src="pinterest-icon.png" alt="Pinterest">
+                <img src="/assets/icons/pinterest-icon.png" alt="Pinterest">
             </a>
             <a href="profile.html" aria-label="User Profile">
-                <img src="user-icon.png" alt="User Profile">
+                <img src="/assets/icons/user-icon.png" alt="User Profile">
             </a>
             <a href="cart.html" aria-label="Shopping Cart">
-                <img src="/images/cart-icon.png" alt="Shopping Cart">
+                <img src="/assets/icons/cart-icon.png" alt="Shopping Cart">
             </a>
         </div>
     </header>
+    
+
 
     <!-- Navigation Bar -->
     <nav class="navbar">
         <a href="category.html">Category</a>
         <a href="home.html" class="active">Home</a>
         <a href="personalised-art.html">Personalised Art</a>
+        <a href="about-us.html">About Us</a> <!-- Updated link to About Us page -->
+        <a href="contact-us.html">Contact Us</a> <!-- Updated link to Contact Us page -->
+        <div class="search-btn">
+            <a href="search.html">
+                <img src="assets/icons/search-icon.png" alt="Search">
+            </a>
+        </div>
     </nav>
+    
 
-    <!-- Section Header -->
+    <!-- Main Content Section -->
     <section class="section-header">
         Best Selling Art / Artist
     </section>
@@ -61,6 +74,12 @@
 
         <!-- Repeat .product-card for each product as needed -->
     </main>
+
+    <!-- Optional Footer -->
+    <footer class="footer">
+        <p>© 2024 AbhiRang. All rights reserved.</p>
+    </footer>
+
 </body>
 
 </html>

@@ -1,55 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="admin-dashboard.css">
+    <title>Admin Dashboard - AbhiRang</title>
+    <link rel="stylesheet" href="main.css">
 </head>
-<body>
 
+<body>
+    <!-- Header -->
     <header class="header">
-        <img src="logo.png" alt="AbhiRang Logo" class="logo">
+        <a href="home.html" class="logo-link">
+            <img src="logo.png" alt="AbhiRang Logo" class="logo">
+            <span class="logo-text">AbhiRang</span>
+        </a>
         <div class="social-icons">
+            <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
+                <img src="/assets/icons/instagram-icon.png" alt="Instagram">
+            </a>
+            <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
+                <img src="/assets/icons/facebook-icon.png" alt="Facebook">
+            </a>
+            <a href="https://www.pinterest.com" target="_blank" aria-label="Pinterest">
+                <img src="/assets/icons/pinterest-icon.png" alt="Pinterest">
+            </a>
             <a href="profile.html" aria-label="User Profile">
-                <img src="user-icon.png" alt="User Profile">
+                <img src="/assets/icons/user-icon.png" alt="User Profile">
+            </a>
+            <a href="cart.html" aria-label="Shopping Cart">
+                <img src="/assets/icons/cart-icon.png" alt="Shopping Cart">
             </a>
         </div>
     </header>
 
+    <!-- Navigation Bar -->
     <nav class="navbar">
-        <a href="home.html">Home</a>
         <a href="admin-dashboard.html" class="active">Dashboard</a>
+        <a href="manage-users.html">Manage Users</a>
+        <a href="manage-orders.html">Manage Orders</a>
+        <a href="manage-products.html">Manage Products</a>
     </nav>
 
-    <div class="dashboard-container">
-        <aside class="dashboard-sidebar">
-            <a href="#" onclick="showSection('admin-details')">Admin Details</a>
-            <a href="#" onclick="showSection('order-management')">Order Management</a>
-            <a href="#" onclick="showSection('inventory-management')">Inventory Management</a>
-            <a href="#" onclick="showSection('user-management')">User Management</a>
-        </aside>
+    <!-- Admin Dashboard Section -->
+    <section class="admin-dashboard">
+        <h1>Admin Dashboard</h1>
+        <div class="dashboard-cards">
+            <div class="dashboard-card">
+                <h3>Total Users</h3>
+                <p>1500</p>
+            </div>
+            <div class="dashboard-card">
+                <h3>Total Orders</h3>
+                <p>350</p>
+            </div>
+            <div class="dashboard-card">
+                <h3>Total Products</h3>
+                <p>120</p>
+            </div>
+            <div class="dashboard-card">
+                <h3>Total Revenue</h3>
+                <p>Rs. 500,000/-</p>
+            </div>
+        </div>
+    </section>
 
-        <main class="dashboard-content">
-            <section id="admin-details" class="dashboard-section active">
-                <h2>Admin Details</h2>
-                <p>Manage your admin profile.</p>
-            </section>
-            <section id="order-management" class="dashboard-section">
-                <h2>Order Management</h2>
-                <p>Manage and track all customer orders.</p>
-            </section>
-            <section id="inventory-management" class="dashboard-section">
-                <h2>Inventory Management</h2>
-                <p>Oversee and manage product inventory.</p>
-            </section>
-            <section id="user-management" class="dashboard-section">
-                <h2>User Management</h2>
-                <p>Manage user accounts and permissions.</p>
-            </section>
-        </main>
-    </div>
-
-    <script src="dashboard.js"></script>
+    <footer>
+        <p>© 2024 AbhiRang</p>
+    </footer>
 </body>
+
 </html>

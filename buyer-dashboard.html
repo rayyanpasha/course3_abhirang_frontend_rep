@@ -1,61 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buyer Dashboard</title>
-    <link rel="stylesheet" href="buyer-dashboard.css">
+    <title>Buyer Dashboard - AbhiRang</title>
+    <link rel="stylesheet" href="main.css">
 </head>
-<body>
 
+<body>
     <!-- Header -->
     <header class="header">
-        <img src="logo.png" alt="AbhiRang Logo" class="logo">
+        <a href="home.html" class="logo-link">
+            <img src="logo.png" alt="AbhiRang Logo" class="logo">
+            <span class="logo-text">AbhiRang</span>
+        </a>
         <div class="social-icons">
             <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
-                <img src="instagram-icon.png" alt="Instagram">
+                <img src="/assets/icons/instagram-icon.png" alt="Instagram">
             </a>
             <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
-                <img src="facebook-icon.png" alt="Facebook">
+                <img src="/assets/icons/facebook-icon.png" alt="Facebook">
+            </a>
+            <a href="https://www.pinterest.com" target="_blank" aria-label="Pinterest">
+                <img src="/assets/icons/pinterest-icon.png" alt="Pinterest">
             </a>
             <a href="profile.html" aria-label="User Profile">
-                <img src="user-icon.png" alt="User Profile">
+                <img src="/assets/icons/user-icon.png" alt="User Profile">
+            </a>
+            <a href="cart.html" aria-label="Shopping Cart">
+                <img src="/assets/icons/cart-icon.png" alt="Shopping Cart">
             </a>
         </div>
     </header>
 
     <!-- Navigation Bar -->
     <nav class="navbar">
-        <a href="home.html">Home</a>
-        <a href="category.html">Category</a>
-        <a href="personalised-art.html">Personalised Art</a>
         <a href="buyer-dashboard.html" class="active">Dashboard</a>
+        <a href="orders.html">Orders</a>
+        <a href="profile.html">Profile</a>
     </nav>
 
-    <!-- Dashboard Layout -->
-    <div class="dashboard-container">
-        <aside class="dashboard-sidebar">
-            <a href="#" onclick="showSection('user-details')">User Details</a>
-            <a href="#" onclick="showSection('orders')">Your Orders</a>
-            <a href="#" onclick="showSection('reviews')">Your Reviews</a>
-        </aside>
+    <!-- Buyer Dashboard Section -->
+    <section class="buyer-dashboard">
+        <h1>Buyer Dashboard</h1>
+        <div class="dashboard-cards">
+            <div class="dashboard-card">
+                <h3>Total Orders</h3>
+                <p>10</p>
+            </div>
+            <div class="dashboard-card">
+                <h3>Cart Items</h3>
+                <p>3 items</p>
+                <a href="cart.html" class="view-cart-link">View Cart</a>
+            </div>
+        </div>
+    </section>
 
-        <main class="dashboard-content">
-            <section id="user-details" class="dashboard-section active">
-                <h2>User Details</h2>
-                <p>Manage your personal information here.</p>
-            </section>
-            <section id="orders" class="dashboard-section">
-                <h2>Your Orders</h2>
-                <p>View and track your orders.</p>
-            </section>
-            <section id="reviews" class="dashboard-section">
-                <h2>Your Reviews</h2>
-                <p>Manage your product reviews.</p>
-            </section>
-        </main>
-    </div>
-
-    <script src="dashboard.js"></script>
+    <footer>
+        <p>© 2024 AbhiRang</p>
+    </footer>
 </body>
+
 </html>
