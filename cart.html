@@ -11,9 +11,9 @@
 <body>
     <!-- Header -->
     <header class="header">
-        <a href="home.html" class="logo-link">
+        <a href="home.html">
             <img src="logo.png" alt="AbhiRang Logo" class="logo">
-            <span class="logo-text">AbhiRang</span>
+            <span class="brand-name">AbhiRang</span>
         </a>
         <div class="social-icons">
             <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
@@ -37,47 +37,38 @@
     <!-- Navigation Bar -->
     <nav class="navbar">
         <a href="category.html">Category</a>
-        <a href="home.html">Home</a>
+        <a href="home.html" class="active">Home</a>
         <a href="personalised-art.html">Personalised Art</a>
     </nav>
 
-    <!-- Cart Section -->
-    <section class="cart-section">
+    <!-- Cart Page Content -->
+    <main class="cart-container">
         <h1>Your Cart</h1>
 
-        <!-- Cart Items -->
+        <!-- Cart Items Table or Grid -->
         <div class="cart-items">
+            <!-- Example Cart Item -->
             <div class="cart-item">
-                <img src="art1.jpg" alt="Landscape T34 Artwork" class="cart-item-image">
+                <img src="art1.jpg" alt="Artwork" class="cart-item-image">
                 <div class="cart-item-details">
                     <p class="cart-item-title">Landscape T34 (48*36)</p>
                     <p class="cart-item-price">Rs. 20,999/-</p>
-                    <input type="number" value="1" class="cart-item-quantity">
+                    <div class="cart-item-quantity">
+                        Quantity: <input type="number" value="1" min="1">
+                    </div>
                 </div>
-                <button class="remove-item" aria-label="Remove Item">Remove</button>
+                <button class="remove-item">Remove</button>
             </div>
-
-            <div class="cart-item">
-                <img src="art2.jpg" alt="Landscape T36 Artwork" class="cart-item-image">
-                <div class="cart-item-details">
-                    <p class="cart-item-title">Landscape T36 (40*60)</p>
-                    <p class="cart-item-price">Rs. 19,999/-</p>
-                    <input type="number" value="1" class="cart-item-quantity">
-                </div>
-                <button class="remove-item" aria-label="Remove Item">Remove</button>
-            </div>
+            <!-- Repeat for other items in the cart -->
         </div>
 
         <!-- Cart Summary -->
         <div class="cart-summary">
-            <p>Total: Rs. 40,998/-</p>
-            <button class="proceed-checkout">Proceed to Checkout</button>
+            <p>Total Price: Rs. 20,999/-</p>
+            <!-- Proceed to Checkout Button -->
+            <a href="checkout.html" class="checkout-btn">Proceed to Checkout</a>
         </div>
-    </section>
-
-    <footer>
-        <p>© 2024 AbhiRang</p>
-    </footer>
+    </main>
 </body>
 
 </html>

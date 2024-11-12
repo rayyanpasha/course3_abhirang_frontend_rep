@@ -1,19 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout - AbhiRang</title>
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="main.css"> <!-- Link to your main CSS -->
 </head>
-
 <body>
     <!-- Header -->
     <header class="header">
         <a href="home.html" class="logo-link">
-            <img src="logo.png" alt="AbhiRang Logo" class="logo">
-            <span class="logo-text">AbhiRang</span>
+            <img src="logo.png" alt="AbhiRang Logo" class="logo"> AbhiRang
         </a>
         <div class="social-icons">
             <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
@@ -37,41 +34,105 @@
     <!-- Navigation Bar -->
     <nav class="navbar">
         <a href="category.html">Category</a>
-        <a href="home.html">Home</a>
+        <a href="home.html" class="active">Home</a>
         <a href="personalised-art.html">Personalised Art</a>
     </nav>
 
-    <!-- Checkout Section -->
-    <section class="checkout-section">
-        <h1>Checkout</h1>
+    <!-- Checkout Page Content -->
+    <main class="checkout-container">
+        <!-- Billing Information -->
+        <div class="billing-info">
+            <h2>Billing Information</h2>
+            <form action="checkout-process.html" method="POST">
+                <div class="input-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="address">Shipping Address</label>
+                    <textarea id="address" name="address" rows="4" required></textarea>
+                </div>
+                <div class="input-group">
+                    <label for="city">City</label>
+                    <input type="text" id="city" name="city" required>
+                </div>
+                <div class="input-group">
+                    <label for="postal-code">Postal Code</label>
+                    <input type="text" id="postal-code" name="postal-code" required>
+                </div>
+                <div class="input-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="text" id="phone" name="phone" required>
+                </div>
+                <div class="input-group">
+                    <label for="payment-method">Payment Method</label>
+                    <select id="payment-method" name="payment-method">
+                        <option value="credit-card">Credit Card</option>
+                        <option value="paypal">PayPal</option>
+                        <option value="cod">Cash on Delivery</option>
+                    </select>
+                </div>
+            </form>
+        </div>
 
-        <form class="checkout-form">
-            <div class="form-group">
-                <label for="name">Full Name</label>
-                <input type="text" id="name" placeholder="Enter your full name">
-            </div>
-            <div class="form-group">
-                <label for="address">Shipping Address</label>
-                <input type="text" id="address" placeholder="Enter your address">
-            </div>
-            <div class="form-group">
-                <label for="phone">Phone Number</label>
-                <input type="text" id="phone" placeholder="Enter your phone number">
-            </div>
-            <div class="form-group">
-                <label for="payment-method">Payment Method</label>
-                <select id="payment-method">
-                    <option value="credit-card">Credit Card</option>
-                    <option value="paypal">PayPal</option>
-                </select>
-            </div>
-            <button type="submit" class="place-order">Place Order</button>
-        </form>
-    </section>
+        <!-- Order Summary Section -->
+        <div class="order-summary">
+            <h2>Order Summary</h2>
+            <div class="order-items">
+                <!-- Loop through cart items dynamically here -->
+                <div class="order-item">
+                    <span class="item-name">Landscape T34 (48*36)</span>
+                    <span class="item-price">Rs. 20,999/-</span>
+                    <span class="item-quantity">x1</span>
+                </div>
 
-    <footer>
-        <p>© 2024 AbhiRang</p>
+                <div class="order-item">
+                    <span class="item-name">Landscape T36 (40*60)</span>
+                    <span class="item-price">Rs. 19,999/-</span>
+                    <span class="item-quantity">x2</span>
+                </div>
+
+                <!-- Example of a discount row -->
+                <div class="order-item total">
+                    <span class="item-name">Discount</span>
+                    <span class="item-price">- Rs. 2,000/-</span>
+                </div>
+            </div>
+
+            <!-- Summary Totals -->
+            <div class="order-totals">
+                <div class="total-row">
+                    <span>Subtotal</span>
+                    <span class="total-price">Rs. 40,000/-</span>
+                </div>
+                <div class="total-row">
+                    <span>Shipping</span>
+                    <span class="total-price">Rs. 200/-</span>
+                </div>
+                <div class="total-row">
+                    <span>Taxes</span>
+                    <span class="total-price">Rs. 1,800/-</span>
+                </div>
+
+                <!-- Total Amount -->
+                <div class="total-row total-amount">
+                    <span>Total</span>
+                    <span class="total-price">Rs. 42,000/-</span>
+                </div>
+            </div>
+
+            <!-- Checkout Button -->
+            <a href="order-success.html" class="checkout-btn">Proceed to Checkout</a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 AbhiRang. All Rights Reserved.</p>
     </footer>
 </body>
-
 </html>
