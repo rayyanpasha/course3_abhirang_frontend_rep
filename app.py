@@ -3,10 +3,14 @@ from flask import Flask, jsonify, request
 from flask_jwt_extended import JWTManager, jwt_required, get_jwt_identity
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
+from flask_cors import CORS  # Import the CORS module
 
 app = Flask(__name__)
 app.config['JWT_SECRET_KEY'] = 'your_secret_key'  # Change this to a secret key
 jwt = JWTManager(app)
+
+# Enable CORS for all routes (or restrict it to specific domains as needed)
+CORS(app, resources={r"/*": {"origins": "*"}})  # Allow all domains, change * to your frontend URL for production
 
 # DB Initialization (connect to SQLite)
 def get_db():

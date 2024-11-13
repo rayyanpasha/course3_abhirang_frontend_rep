@@ -33,23 +33,20 @@
             </a>
         </div>
     </header>
-    
-
 
     <!-- Navigation Bar -->
     <nav class="navbar">
         <a href="category.html">Category</a>
         <a href="home.html" class="active">Home</a>
         <a href="personalised-art.html">Personalised Art</a>
-        <a href="about-us.html">About Us</a> <!-- Updated link to About Us page -->
-        <a href="contact-us.html">Contact Us</a> <!-- Updated link to Contact Us page -->
+        <a href="about-us.html">About Us</a>
+        <a href="contact-us.html">Contact Us</a>
         <div class="search-btn">
             <a href="search.html">
                 <img src="assets/icons/search-icon.png" alt="Search">
             </a>
         </div>
     </nav>
-    
 
     <!-- Main Content Section -->
     <section class="section-header">
@@ -57,22 +54,8 @@
     </section>
 
     <!-- Product Grid -->
-    <main class="product-grid">
-        <div class="product-card">
-            <img src="art1.jpg" alt="Landscape T34 Artwork" class="product-image">
-            <div class="product-title">Landscape T34 (48*36)</div>
-            <div class="product-price">Rs. 20,999/- <span class="product-original-price">Rs. 25,245/-</span></div>
-            <button class="product-wishlist" aria-label="Add to wishlist">♡</button>
-        </div>
-
-        <div class="product-card">
-            <img src="art2.jpg" alt="Landscape T36 Artwork" class="product-image">
-            <div class="product-title">Landscape T36 (40*60)</div>
-            <div class="product-price">Rs. 19,999/- <span class="product-original-price">Rs. 36,015/-</span></div>
-            <button class="product-wishlist" aria-label="Add to wishlist">♡</button>
-        </div>
-
-        <!-- Repeat .product-card for each product as needed -->
+    <main class="product-grid" id="productGrid">
+        <!-- Product cards will be dynamically inserted here -->
     </main>
 
     <!-- Optional Footer -->
@@ -80,6 +63,7 @@
         <p>© 2024 AbhiRang. All rights reserved.</p>
     </footer>
 
+    <script src="main.js"></script> <!-- Ensure your JS file is linked -->
 </body>
 
 </html>
