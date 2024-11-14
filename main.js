@@ -1,50 +1,61 @@
-function loadProducts() {
-    const apiUrl = 'https://sp22q143-5000.inc1.devtunnels.ms/api/products'; // Your API endpoint
-    console.log("Fetching products from:", apiUrl); // Log the API URL being used
-    
-    fetch(apiUrl)
-        .then(response => {
-            console.log("Response Status:", response.status); // Log the response status
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(products => {
-            console.log('Fetched Products:', products); // Log the products returned from API
+const apiUrl = 'https://sp22q143-5000.inc1.devtunnels.ms/';
 
-            const productGrid = document.getElementById('productGrid');
-            productGrid.innerHTML = ''; // Clear any existing products before adding new ones
+function handleLogin(event) {
+    event.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
 
-            // Check if the products array is empty
-            if (products.length === 0) {
-                console.log('No products available!');
-                return;
-            }
-
-            // Iterate over the products and create product cards dynamically
-            products.forEach(product => {
-                console.log('Product:', product); // Log each product to verify
-                const productCard = document.createElement('div');
-                productCard.classList.add('product-card');
-                
-                productCard.innerHTML = `
-                    <!-- Placeholder image for all products -->
-                    <img src="https://via.placeholder.com/150" alt="${product.name}" class="product-image"> 
-                    <div class="product-title">${product.name}</div>
-                    <div class="product-price">Rs. ${product.price} <span class="product-original-price">Rs. ${product.price * 1.25}</span></div>
-                    <button class="product-wishlist" aria-label="Add to wishlist">♡</button>
-                `;
-                
-                productGrid.appendChild(productCard);
-            });
-        })
-        .catch(error => {
-            console.error('Error fetching products:', error);
-            alert('Failed to load products. Check console for details.');
-        });
+    fetch(`${apiUrl}/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('Login failed');
+        return response.json();
+    })
+    .then(data => {
+        console.log('Login successful:', data);
+        // Redirect to a dashboard or homepage after successful login
+    })
+    .catch(error => {
+        console.error('Login error:', error);
+        document.getElementById('errorMessage').style.display = 'block';
+    });
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    loadProducts();
+function handleRegistration(event) {
+    event.preventDefault();
+    const username = document.getElementById('username').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const phone_number = document.getElementById('phone_number').value;
+    const user_type = document.getElementById('user_type').value;
+    const is_verified = user_type === 'buyer' ? 0 : 1;
+
+    fetch(`${apiUrl}/register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, email, password, phone_number, user_type, is_verified })
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('Registration failed');
+        return response.json();
+    })
+    .then(data => {
+        console.log('Registration successful:', data);
+        window.location.href = 'login.html'; // Redirect to login page after registration
+    })
+    .catch(error => {
+        console.error('Registration error:', error);
+        document.getElementById('registerErrorMessage').style.display = 'block';
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) loginForm.addEventListener('submit', handleLogin);
+
+    const registerForm = document.getElementById('registerForm');
+    if (registerForm) registerForm.addEventListener('submit', handleRegistration);
 });

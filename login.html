@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="main.css">
 </head>
 
-<body>
+<body class="login-page">
     <!-- Header -->
     <header class="header">
         <a href="home.html" class="logo-link">
@@ -45,7 +45,7 @@
     <section class="login-form-section">
         <div class="login-form-container">
             <h1>Login</h1>
-            <form action="/login" method="POST">
+            <form id="loginForm">
                 <div class="input-group">
                     <label for="email">Email:</label>
                     <input type="email" id="email" name="email" required>
@@ -56,6 +56,7 @@
                 </div>
                 <button type="submit" class="login-btn">Login</button>
             </form>
+            <p id="errorMessage" style="color: red; display: none;">Invalid credentials, please try again.</p>
             <p>Don't have an account? <a href="register.html">Register here</a></p>
         </div>
     </section>
@@ -63,6 +64,8 @@
     <footer>
         <p>© 2024 AbhiRang</p>
     </footer>
+
+    <script src="main.js"></script>
 </body>
 
 </html>
