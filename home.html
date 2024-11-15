@@ -10,6 +10,7 @@
 
 <body>
 
+    <!-- Header with Logo and Social Icons -->
     <header class="header">
         <a href="home.html" class="logo-container">
             <img src="logo.png" alt="AbhiRang Logo" class="logo">
@@ -48,7 +49,7 @@
         </div>
     </nav>
 
-    <!-- Main Content Section -->
+    <!-- Best Selling Section Header -->
     <section class="section-header">
         Best Selling Art / Artist
     </section>
@@ -63,7 +64,90 @@
         <p>© 2024 AbhiRang. All rights reserved.</p>
     </footer>
 
-    <script src="main.js"></script> <!-- Ensure your JS file is linked -->
+    <!-- JavaScript to Fetch and Display Best Sellers -->
+    <script>
+        // API URL for best sellers
+        const apiBaseUrl = 'https://turbo-memory-4jjjrppp5wvxf5j5-5000.app.github.dev'; // Your provided API base URL
+        const bestsellersEndpoint = '/api/products/bestsellers'; // Endpoint for best sellers
+
+        // Function to fetch best sellers and display them
+        async function fetchAndDisplayBestsellers() {
+            try {
+                // Fetching the data from the API
+                const response = await fetch(`${apiBaseUrl}${bestsellersEndpoint}`);
+                const bestsellers = await response.json();
+
+                // Log the entire response to check its structure
+                console.log('API Response:', bestsellers);
+
+                // Check if the bestsellers array exists and is not empty
+                if (!Array.isArray(bestsellers) || bestsellers.length === 0) {
+                    console.error('No best sellers found in the response!');
+                    return;
+                }
+
+                // Get the product grid container
+                const productGrid = document.getElementById('productGrid');
+                productGrid.innerHTML = ''; // Clear the grid before adding new products
+
+                // Loop through the bestsellers data
+                bestsellers.forEach(product => {
+                    // Log each product's data for debugging
+                    console.log('Product Data:', product);
+
+                    // Check if product has necessary properties (id, name, total_sold)
+                    if (!product.product_id || !product.name || !product.total_sold) {
+                        console.error('Missing product data:', product);
+                        return;
+                    }
+
+                    // Create a new product card div
+                    const productCard = document.createElement('div');
+                    productCard.classList.add('product-card');
+
+                    // Add product image (use a gray placeholder if no image URL)
+                    const imageContainer = document.createElement('div');
+                    imageContainer.classList.add('product-image-placeholder');
+                    
+                    // Create an empty gray image placeholder
+                    const img = document.createElement('img');
+                    img.src = "https://via.placeholder.com/300/CCCCCC/CCCCCC?text=No+Image";  // Gray placeholder image URL
+                    img.alt = product.name;
+                    imageContainer.appendChild(img);
+
+                    productCard.appendChild(imageContainer);
+
+                    // Add product name
+                    const title = document.createElement('h3');
+                    title.classList.add('product-title');
+                    title.textContent = product.name || 'Product Name'; // Fallback if no name
+                    productCard.appendChild(title);
+
+                    // Add total sold
+                    const sold = document.createElement('p');
+                    sold.classList.add('product-sold');
+                    sold.textContent = `Total Sold: ${product.total_sold}`; // Display total sold value
+                    productCard.appendChild(sold);
+
+                    // Add event listener to redirect to product details on click
+                    productCard.addEventListener('click', () => {
+                        // Redirect to the product details page with the product's ID
+                        window.location.href = `product-detail.html?id=${product.product_id}`;
+                    });
+
+                    // Append the product card to the grid
+                    productGrid.appendChild(productCard);
+                });
+            } catch (error) {
+                // Handle any errors during fetch
+                console.error('Error fetching best sellers:', error);
+            }
+        }
+
+        // Call the function to fetch and display best sellers when the page loads
+        window.onload = fetchAndDisplayBestsellers;
+    </script>
+
 </body>
 
 </html>

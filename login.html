@@ -45,7 +45,7 @@
     <section class="login-form-section">
         <div class="login-form-container">
             <h1>Login</h1>
-            <form id="loginForm">
+            <form id="loginForm" method="POST">
                 <div class="input-group">
                     <label for="email">Email:</label>
                     <input type="email" id="email" name="email" required>
@@ -65,7 +65,49 @@
         <p>© 2024 AbhiRang</p>
     </footer>
 
-    <script src="main.js"></script>
+    <script>
+        // Handle Login Form Submission
+        document.getElementById('loginForm').addEventListener('submit', async function (event) {
+            event.preventDefault(); // Prevent the form from submitting the traditional way
+
+            // Get the form data
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            const loginData = {
+                email: email,
+                password: password
+            };
+
+            // Make an API call to the backend login route
+            try {
+                const response = await fetch('https://turbo-memory-4jjjrppp5wvxf5j5-5000.app.github.dev/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(loginData)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Login failed');
+                }
+
+                const data = await response.json();
+                
+                // If login is successful, redirect to the home page
+                if (data.message === "Login successful!") {
+                    window.location.href = "home.html"; // Redirect to the home page
+                } else {
+                    // If login fails, show an error message
+                    document.getElementById('errorMessage').style.display = 'block';
+                }
+            } catch (error) {
+                console.error('Error during login:', error);
+                document.getElementById('errorMessage').style.display = 'block';
+            }
+        });
+    </script>
 </body>
 
 </html>

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="main.css">
 </head>
 
-<body>
+<body class="register-page">
     <!-- Header -->
     <header class="header">
         <a href="home.html" class="logo-link">
@@ -42,10 +42,10 @@
     </nav>
 
     <!-- Registration Form Section -->
-    <section class="registration-form-section">
-        <div class="registration-form-container">
+    <section class="register-form-section">
+        <div class="register-form-container">
             <h1>Register</h1>
-            <form id="registerForm">
+            <form id="registerForm" method="POST">
                 <div class="input-group">
                     <label for="username">Username:</label>
                     <input type="text" id="username" name="username" required>
@@ -55,23 +55,20 @@
                     <input type="email" id="email" name="email" required>
                 </div>
                 <div class="input-group">
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="input-group">
                     <label for="password">Password:</label>
                     <input type="password" id="password" name="password" required>
                 </div>
                 <div class="input-group">
-                    <label for="phone_number">Phone Number:</label>
-                    <input type="text" id="phone_number" name="phone_number" required>
-                </div>
-                <div class="input-group">
-                    <label for="user_type">User Type:</label>
-                    <select id="user_type" name="user_type" required>
-                        <option value="buyer">Buyer</option>
-                        <option value="artist">Artist</option>
-                        <option value="admin">Admin</option>
-                    </select>
+                    <label for="confirmPassword">Confirm Password:</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
                 </div>
                 <button type="submit" class="register-btn">Register</button>
             </form>
+            <p id="errorMessage" style="color: red; display: none;">Passwords do not match. Please try again.</p>
             <p>Already have an account? <a href="login.html">Login here</a></p>
         </div>
     </section>
@@ -80,7 +77,60 @@
         <p>© 2024 AbhiRang</p>
     </footer>
 
-    <script src="main.js"></script>
+    <script>
+        // Handle Registration Form Submission
+        document.getElementById('registerForm').addEventListener('submit', async function (event) {
+            event.preventDefault(); // Prevent the form from submitting the traditional way
+
+            // Get the form data
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            // Check if passwords match
+            if (password !== confirmPassword) {
+                document.getElementById('errorMessage').style.display = 'block';
+                return;
+            }
+
+            const registrationData = {
+                username: username,
+                email: email,
+                phone: phone,
+                password: password
+            };
+
+            // Make an API call to the backend registration route
+            try {
+                const response = await fetch('https://turbo-memory-4jjjrppp5wvxf5j5-5000.app.github.dev/api/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(registrationData)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Registration failed');
+                }
+
+                const data = await response.json();
+
+                // If registration is successful, redirect to the login page
+                if (data.message === "Registration successful!") {
+                    window.location.href = "login.html"; // Redirect to the login page
+                } else {
+                    // If registration fails, show an error message
+                    document.getElementById('errorMessage').style.display = 'block';
+                }
+            } catch (error) {
+                console.error('Error during registration:', error);
+                document.getElementById('errorMessage').style.display = 'block';
+            }
+        });
+    </script>
 </body>
 
 </html>

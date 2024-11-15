@@ -4,14 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Category - AbhiRang</title>
-    <link rel="stylesheet" href="main.css">
+    <title>Categories - AbhiRang</title>
+    <link rel="stylesheet" href="main.css"> <!-- Your CSS file -->
 </head>
 
 <body>
-    <!-- Header -->
+
+    <!-- Header with Logo and Social Icons -->
     <header class="header">
-        <a href="home.html" class="logo-link">
+        <a href="home.html" class="logo-container">
             <img src="logo.png" alt="AbhiRang Logo" class="logo">
             <span class="logo-text">AbhiRang</span>
         </a>
@@ -39,34 +40,64 @@
         <a href="category.html" class="active">Category</a>
         <a href="home.html">Home</a>
         <a href="personalised-art.html">Personalised Art</a>
+        <a href="about-us.html">About Us</a>
+        <a href="contact-us.html">Contact Us</a>
+        <div class="search-btn">
+            <a href="search.html">
+                <img src="assets/icons/search-icon.png" alt="Search">
+            </a>
+        </div>
     </nav>
 
-    <!-- Category Section -->
-    <section class="category-section">
-        <h1>Browse by Categories</h1>
-        <div class="category-grid">
-            <div class="category-card">
-                <img src="category1.jpg" alt="Category 1">
-                <h2>Landscapes</h2>
-            </div>
-            <div class="category-card">
-                <img src="category2.jpg" alt="Category 2">
-                <h2>Abstract</h2>
-            </div>
-            <div class="category-card">
-                <img src="category3.jpg" alt="Category 3">
-                <h2>Portraits</h2>
-            </div>
-            <div class="category-card">
-                <img src="category4.jpg" alt="Category 4">
-                <h2>Nature</h2>
-            </div>
-        </div>
+    <!-- Category List Section -->
+    <section class="category-list" id="categoryList">
+        <!-- Categories will be dynamically inserted here -->
     </section>
 
-    <footer>
-        <p>© 2024 AbhiRang</p>
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2024 AbhiRang. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Function to fetch and display categories
+        async function fetchCategories() {
+            const apiBaseUrl = 'https://turbo-memory-4jjjrppp5wvxf5j5-5000.app.github.dev';  // Replace with your actual base API URL
+            const categoriesEndpoint = '/api/categories';  // API endpoint for categories
+
+            try {
+                const response = await fetch(`${apiBaseUrl}${categoriesEndpoint}`);
+                const categories = await response.json();
+
+                if (!categories || categories.length === 0) {
+                    alert('No categories found!');
+                    return;
+                }
+
+                // Insert categories into the page
+                const categoryListSection = document.getElementById('categoryList');
+                
+                categories.forEach(category => {
+                    const categoryElement = document.createElement('div');
+                    categoryElement.classList.add('category-item');
+
+                    // Create clickable category link
+                    const categoryLink = document.createElement('a');
+                    categoryLink.href = `product-listing.html?category_id=${category.category_id}`;
+                    categoryLink.textContent = category.name;
+                    categoryElement.appendChild(categoryLink);
+
+                    // Append category to the category list section
+                    categoryListSection.appendChild(categoryElement);
+                });
+            } catch (error) {
+                console.error('Error fetching categories:', error);
+            }
+        }
+
+        // Call the function to fetch categories when the page loads
+        window.onload = fetchCategories;
+    </script>
 </body>
 
 </html>
