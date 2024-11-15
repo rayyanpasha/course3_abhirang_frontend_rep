@@ -1,13 +1,19 @@
-from flask import Flask, request, jsonify, render_template
+import jwt
+import os
+from datetime import datetime, timedelta
+from flask import Flask, request, jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
 import sqlite3
 from flask_cors import CORS
-from datetime import datetime
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 
-DATABASE = 'AbhiRang.db'  # Replace with your actual database path if necessary
+DATABASE = 'AbhiRang.db'  
+
+# Get secret key from environment variable or hardcode (in real applications, use environment variables)
+JWT_SECRET_KEY = os.environ.get("JWT_SECRET_KEY", "your_secret_key_here")
+JWT_EXPIRATION_DELTA = timedelta(days=1)  # Token expiry time
 
 # Helper functions
 def get_db():
@@ -22,6 +28,14 @@ def get_user_by_email(email):
     user = cursor.fetchone()
     conn.close()
     return user
+
+# Helper function to generate JWT token
+def generate_jwt_token(user_id):
+    payload = {
+        'user_id': user_id,
+        'exp': datetime.utcnow() + JWT_EXPIRATION_DELTA
+    }
+    return jwt.encode(payload, JWT_SECRET_KEY, algorithm='HS256')
 
 # User Registration
 @app.route('/api/register', methods=['POST'])
@@ -73,7 +87,80 @@ def login_user():
     if not user or not check_password_hash(user['password_hash'], data['password']):
         return jsonify({"error": "Invalid email or password"}), 401
 
-    return jsonify({"message": "Login successful!"}), 200
+    # Generate JWT token
+    token = generate_jwt_token(user['user_id'])
+
+    return jsonify({"message": "Login successful!", "token": token}), 200
+
+@app.route('/api/cart', methods=['POST'])
+def add_to_cart():
+    # Verify JWT token
+    token = request.headers.get("Authorization")
+    if not token:
+        return jsonify({"error": "Token is missing!"}), 401
+
+    try:
+        # Strip "Bearer " from the token string
+        token = token.split(" ")[1]
+        decoded_token = jwt.decode(token, "JWT_SECRET_KEY", algorithms=["HS256"])
+
+        user_id = decoded_token['user_id']  # Extract user ID from the token
+
+        # Now you can proceed with adding the item to the cart, using the user_id
+        data = request.get_json()
+        product_id = data["product_id"]
+        quantity = data["quantity"]
+        price_per_unit = data["price_per_unit"]
+
+        # Check if the cart exists for the user, otherwise create it
+        conn = get_db()
+        cursor = conn.cursor()
+        cursor.execute('SELECT cart_id FROM Cart WHERE user_id = ?', (user_id,))
+        cart = cursor.fetchone()
+
+        if not cart:
+            cursor.execute('''
+                INSERT INTO Cart (user_id, created_at, updated_at)
+                VALUES (?, ?, ?)
+            ''', (user_id, datetime.datetime.now(), datetime.datetime.now()))
+            cart_id = cursor.lastrowid
+        else:
+            cart_id = cart['cart_id']
+
+        # Add item to cart
+        cursor.execute('''
+            INSERT INTO Cart_Item (cart_id, product_id, quantity, price_per_unit)
+            VALUES (?, ?, ?, ?)
+        ''', (cart_id, product_id, quantity, price_per_unit))
+        conn.commit()
+        conn.close()
+
+        return jsonify({"message": "Item added to cart successfully!"}), 201
+
+    except jwt.ExpiredSignatureError:
+        return jsonify({"error": "Token has expired!"}), 401
+    except jwt.InvalidTokenError:
+        return jsonify({"error": "Invalid token!"}), 401
+# Protect routes with JWT
+@app.route('/api/protected', methods=['GET'])
+def protected_route():
+    token = request.headers.get('Authorization')
+
+    if not token:
+        return jsonify({"error": "Token is missing"}), 403
+
+    try:
+        decoded_token = jwt.decode(token, JWT_SECRET_KEY, algorithms=['HS256'])
+        user_id = decoded_token['user_id']
+    except jwt.ExpiredSignatureError:
+        return jsonify({"error": "Token has expired"}), 401
+    except jwt.InvalidTokenError:
+        return jsonify({"error": "Invalid token"}), 401
+
+    return jsonify({"message": f"Hello User {user_id}, you're authorized!"})
+
+# Other Routes (No Change Needed for JWT)
+# ... your existing routes here (categories, products, etc.)
 
 # Categories Retrieval
 @app.route('/api/categories', methods=['GET'])
@@ -139,48 +226,7 @@ def get_best_selling_products():
     return jsonify([dict(row) for row in best_sellers])
 
 # Cart Retrieval
-@app.route('/api/cart', methods=['GET'])
-def get_cart():
-    user_id = request.args.get('user_id')
-    conn = get_db()
-    cursor = conn.cursor()
-    cursor.execute('SELECT * FROM Cart WHERE user_id = ?', (user_id,))
-    cart = cursor.fetchone()
 
-    if not cart:
-        return jsonify({"message": "Cart is empty"}), 404
-
-    cursor.execute('SELECT * FROM Cart_Item WHERE cart_id = ?', (cart["cart_id"],))
-    items = cursor.fetchall()
-    conn.close()
-    return jsonify([dict(item) for item in items])
-
-# Add Item to Cart
-@app.route('/api/cart', methods=['POST'])
-def add_to_cart():
-    data = request.get_json()
-    conn = get_db()
-    cursor = conn.cursor()
-
-    cursor.execute('SELECT cart_id FROM Cart WHERE user_id = ?', (data["user_id"],))
-    cart = cursor.fetchone()
-
-    if not cart:
-        cursor.execute('''
-            INSERT INTO Cart (user_id, created_at, updated_at)
-            VALUES (?, ?, ?)
-        ''', (data["user_id"], datetime.now(), datetime.now()))
-        cart_id = cursor.lastrowid
-    else:
-        cart_id = cart['cart_id']
-    
-    cursor.execute('''
-        INSERT INTO Cart_Item (cart_id, product_id, quantity, price_per_unit)
-        VALUES (?, ?, ?, ?)
-    ''', (cart_id, data["product_id"], data["quantity"], data["price_per_unit"]))
-    conn.commit()
-    conn.close()
-    return jsonify({"message": "Item added to cart successfully!"}), 201
 
 # User Orders Retrieval
 @app.route('/api/orders', methods=['GET'])
@@ -309,4 +355,4 @@ def order_status(order_id):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True, host='0.0.0.0', port=3000)

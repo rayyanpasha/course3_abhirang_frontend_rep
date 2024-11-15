@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Details - AbhiRang</title>
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="main.css"> <!-- Your CSS file -->
 </head>
 
 <body>
@@ -35,23 +35,27 @@
         </div>
     </header>
 
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <a href="category.html">Category</a>
-        <a href="home.html">Home</a>
-        <a href="personalised-art.html">Personalised Art</a>
-        <a href="about-us.html">About Us</a>
-        <a href="contact-us.html">Contact Us</a>
-        <div class="search-btn">
-            <a href="search.html">
-                <img src="assets/icons/search-icon.png" alt="Search">
-            </a>
-        </div>
-    </nav>
-
     <!-- Product Details Section -->
-    <section class="product-details" id="productDetails">
-        <!-- Product details will be dynamically inserted here -->
+    <section class="product-details">
+        <div class="product-container">
+            <!-- Product Image (left side) -->
+            <div class="product-image">
+                <img src="product-image.jpg" alt="Product Image" id="productImage">
+            </div>
+
+            <!-- Product Info (right side) -->
+            <div class="product-info">
+                <h1 id="productName">Product Name</h1>
+                <p id="productCategory">Category: <span>Category Name</span></p>
+                <p id="productDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vehicula, nunc et convallis hendrerit, metus arcu tincidunt metus, at fermentum elit purus id nunc.</p>
+                <p id="productPrice" class="product-price">$49.99</p>
+
+                <!-- Add to Cart Section -->
+                <div class="add-to-cart">
+                    <button id="addToCartBtn" class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Footer -->
@@ -60,68 +64,80 @@
     </footer>
 
     <script>
-        // Function to fetch and display product details based on product ID from URL
+        // Example: Fetch Product Details and Display
         async function fetchProductDetails() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const productId = urlParams.get('id'); // Get product ID from URL
-
-            if (!productId) {
-                alert('Product ID is missing!');
-                return;
-            }
-
-            const apiBaseUrl = 'https://turbo-memory-4jjjrppp5wvxf5j5-5000.app.github.dev';
-            const productDetailsEndpoint = `/api/products/${productId}`; // Product details endpoint
+            const apiBaseUrl = 'https://turbo-memory-4jjjrppp5wvxf5j5-3000.app.github.dev/';  // Replace with your actual base API URL
+            const productId = new URLSearchParams(window.location.search).get('product_id'); // Get product_id from URL
+            const productEndpoint = `/api/products/${productId}`;
 
             try {
-                const response = await fetch(`${apiBaseUrl}${productDetailsEndpoint}`);
+                const response = await fetch(`${apiBaseUrl}${productEndpoint}`);
                 const product = await response.json();
 
-                // Check if the product data is available
-                if (!product || !product.product_id) {
-                    alert('Product details not found!');
+                if (!product) {
+                    alert('Product not found!');
                     return;
                 }
 
-                // Insert product details into the page
-                const productDetailsSection = document.getElementById('productDetails');
+                // Display product details
+                document.getElementById('productName').textContent = product.name;
+                document.getElementById('productCategory').textContent = `Category: ${product.category_name}`;
+                document.getElementById('productDescription').textContent = product.description;
+                document.getElementById('productPrice').textContent = `$${product.price}`;
+                document.getElementById('productImage').src = product.image_url || 'default-product-image.jpg'; // Default image if none exists
 
-                // Add product name
-                const nameElement = document.createElement('h1');
-                nameElement.textContent = product.name;
-                productDetailsSection.appendChild(nameElement);
+                // Add to Cart Button - Ensure it's working for logged-in users (you'll need to implement the logic)
+                document.getElementById('addToCartBtn').addEventListener('click', () => {
+                    // Get user_id from session/localStorage or API (this should be handled in your real app)
+                    const userId = sessionStorage.getItem('user_id');  // This is just an example, replace with actual logic
 
-                // Add product image (use a gray placeholder)
-                const imageElement = document.createElement('img');
-                imageElement.src = "https://via.placeholder.com/300/CCCCCC/CCCCCC?text=No+Image"; // Placeholder image
-                imageElement.alt = product.name;
-                productDetailsSection.appendChild(imageElement);
+                    if (!userId) {
+                        alert('Please log in to add items to the cart.');
+                        return;
+                    }
 
-                // Add price (assuming the price exists in the product details response)
-                const priceElement = document.createElement('p');
-                priceElement.textContent = `Price: $${product.price || 'N/A'}`; // Fallback price
-                productDetailsSection.appendChild(priceElement);
-
-                // Add total sold
-                const soldElement = document.createElement('p');
-                soldElement.textContent = `Total Sold: ${product.total_sold}`;
-                productDetailsSection.appendChild(soldElement);
-
-                // Add description if available
-                if (product.description) {
-                    const descriptionElement = document.createElement('p');
-                    descriptionElement.textContent = product.description;
-                    productDetailsSection.appendChild(descriptionElement);
-                }
-
+                    // Add product to the cart
+                    addToCart(userId, productId);
+                });
             } catch (error) {
                 console.error('Error fetching product details:', error);
             }
         }
 
-        // Call the function to fetch product details on page load
+        async function addToCart(userId, productId) {
+            const apiBaseUrl = 'https://turbo-memory-4jjjrppp5wvxf5j5-3000.app.github.dev/'; // Replace with your actual base API URL
+            const addToCartEndpoint = '/api/cart/add';
+
+            try {
+                const response = await fetch(`${apiBaseUrl}${addToCartEndpoint}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        user_id: userId,
+                        product_id: productId,
+                    }),
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    alert('Product added to cart successfully!');
+                    window.location.href = 'cart.html'; // Redirect to the cart page after adding the product
+                } else {
+                    alert('Failed to add product to cart.');
+                }
+            } catch (error) {
+                console.error('Error adding product to cart:', error);
+                alert('Error adding product to cart.');
+            }
+        }
+
+        // Fetch product details when the page loads
         window.onload = fetchProductDetails;
     </script>
+
 </body>
 
 </html>

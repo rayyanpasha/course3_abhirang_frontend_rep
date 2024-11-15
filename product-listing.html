@@ -5,13 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Listing - AbhiRang</title>
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="main.css"> <!-- Your CSS file -->
 </head>
 
 <body>
-    <!-- Header -->
+
+    <!-- Header with Logo and Social Icons -->
     <header class="header">
-        <a href="home.html" class="logo-link">
+        <a href="home.html" class="logo-container">
             <img src="logo.png" alt="AbhiRang Logo" class="logo">
             <span class="logo-text">AbhiRang</span>
         </a>
@@ -39,33 +40,88 @@
         <a href="category.html">Category</a>
         <a href="home.html">Home</a>
         <a href="personalised-art.html">Personalised Art</a>
+        <a href="about-us.html">About Us</a>
+        <a href="contact-us.html">Contact Us</a>
+        <div class="search-btn">
+            <a href="search.html">
+                <img src="assets/icons/search-icon.png" alt="Search">
+            </a>
+        </div>
     </nav>
 
-    <!-- Product Listing Section -->
+    <!-- Product List Section -->
     <section class="product-listing">
-        <h1>Product Listing</h1>
-
-        <!-- Product Grid -->
-        <div class="product-grid">
-            <div class="product-card">
-                <img src="art1.jpg" alt="Product Image" class="product-image">
-                <p class="product-title">Landscape T34 (48*36)</p>
-                <p class="product-price">Rs. 20,999/-</p>
-                <a href="product-details.html" class="view-details">View Details</a>
-            </div>
-
-            <div class="product-card">
-                <img src="art2.jpg" alt="Product Image" class="product-image">
-                <p class="product-title">Landscape T36 (40*60)</p>
-                <p class="product-price">Rs. 19,999/-</p>
-                <a href="product-details.html" class="view-details">View Details</a>
-            </div>
+        <h1>Products</h1>
+        <div class="product-grid" id="productGrid">
+            <!-- Products will be dynamically inserted here -->
         </div>
     </section>
 
-    <footer>
-        <p>© 2024 AbhiRang</p>
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2024 AbhiRang. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Function to fetch and display products by category
+        async function fetchProductsByCategory() {
+            const categoryId = new URLSearchParams(window.location.search).get('category_id');
+            if (!categoryId) {
+                alert('Category ID is missing!');
+                return;
+            }
+
+            const apiBaseUrl = 'https://turbo-memory-4jjjrppp5wvxf5j5-3000.app.github.dev/';  // Replace with your actual base API URL
+            const productsEndpoint = `/api/products?category_id=${categoryId}`;  // API endpoint for fetching products
+
+            try {
+                const response = await fetch(`${apiBaseUrl}${productsEndpoint}`);
+                const products = await response.json();
+
+                if (products.length === 0) {
+                    alert('No products found for this category!');
+                    return;
+                }
+
+                const productGrid = document.getElementById('productGrid');
+
+                products.forEach(product => {
+                    const productCard = document.createElement('div');
+                    productCard.classList.add('product-card');
+
+                    const productImage = document.createElement('img');
+                    productImage.src = product.image_url;  // Ensure correct field from the response
+                    productImage.alt = product.name;
+                    productImage.classList.add('product-image');
+
+                    const productTitle = document.createElement('h3');
+                    productTitle.classList.add('product-title');
+                    productTitle.textContent = product.name;
+
+                    const productPrice = document.createElement('p');
+                    productPrice.classList.add('product-price');
+                    productPrice.textContent = `$${product.price}`;
+
+                    const viewDetailsLink = document.createElement('a');
+                    viewDetailsLink.href = `product-details.html?product_id=${product.product_id}`;
+                    viewDetailsLink.classList.add('view-details');
+                    viewDetailsLink.textContent = 'View Details';
+
+                    productCard.appendChild(productImage);
+                    productCard.appendChild(productTitle);
+                    productCard.appendChild(productPrice);
+                    productCard.appendChild(viewDetailsLink);
+
+                    productGrid.appendChild(productCard);
+                });
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        }
+
+        // Call the function to fetch products when the page loads
+        window.onload = fetchProductsByCategory;
+    </script>
 </body>
 
 </html>

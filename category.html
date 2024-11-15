@@ -62,7 +62,7 @@
     <script>
         // Function to fetch and display categories
         async function fetchCategories() {
-            const apiBaseUrl = 'https://turbo-memory-4jjjrppp5wvxf5j5-5000.app.github.dev';  // Replace with your actual base API URL
+            const apiBaseUrl = 'https://turbo-memory-4jjjrppp5wvxf5j5-3000.app.github.dev/';  // Replace with your actual base API URL
             const categoriesEndpoint = '/api/categories';  // API endpoint for categories
 
             try {
@@ -79,12 +79,24 @@
                 
                 categories.forEach(category => {
                     const categoryElement = document.createElement('div');
-                    categoryElement.classList.add('category-item');
+                    categoryElement.classList.add('category-card');
 
                     // Create clickable category link
                     const categoryLink = document.createElement('a');
                     categoryLink.href = `product-listing.html?category_id=${category.category_id}`;
-                    categoryLink.textContent = category.name;
+                    categoryLink.classList.add('category-link');
+
+                    const categoryImage = document.createElement('img');
+                    categoryImage.src = category.image_url || 'default-category-image.jpg';  // Default image if none exists
+                    categoryImage.alt = category.name;
+                    categoryImage.classList.add('category-image');
+
+                    const categoryName = document.createElement('h3');
+                    categoryName.classList.add('category-name');
+                    categoryName.textContent = category.name;
+
+                    categoryLink.appendChild(categoryImage);
+                    categoryLink.appendChild(categoryName);
                     categoryElement.appendChild(categoryLink);
 
                     // Append category to the category list section
@@ -98,6 +110,7 @@
         // Call the function to fetch categories when the page loads
         window.onload = fetchCategories;
     </script>
+
 </body>
 
 </html>

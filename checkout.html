@@ -1,138 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout - AbhiRang</title>
-    <link rel="stylesheet" href="main.css"> <!-- Link to your main CSS -->
+    <link rel="stylesheet" href="main.css">
 </head>
+
 <body>
-    <!-- Header -->
-    <header class="header">
-        <a href="home.html" class="logo-link">
-            <img src="logo.png" alt="AbhiRang Logo" class="logo"> AbhiRang
-        </a>
-        <div class="social-icons">
-            <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
-                <img src="/assets/icons/instagram-icon.png" alt="Instagram">
-            </a>
-            <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
-                <img src="/assets/icons/facebook-icon.png" alt="Facebook">
-            </a>
-            <a href="https://www.pinterest.com" target="_blank" aria-label="Pinterest">
-                <img src="/assets/icons/pinterest-icon.png" alt="Pinterest">
-            </a>
-            <a href="profile.html" aria-label="User Profile">
-                <img src="/assets/icons/user-icon.png" alt="User Profile">
-            </a>
-            <a href="cart.html" aria-label="Shopping Cart">
-                <img src="/assets/icons/cart-icon.png" alt="Shopping Cart">
-            </a>
-        </div>
-    </header>
 
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <a href="category.html">Category</a>
-        <a href="home.html" class="active">Home</a>
-        <a href="personalised-art.html">Personalised Art</a>
-    </nav>
+    <!-- Header and Navigation Bar (same as before) -->
 
-    <!-- Checkout Page Content -->
-    <main class="checkout-container">
-        <!-- Billing Information -->
-        <div class="billing-info">
-            <h2>Billing Information</h2>
-            <form action="checkout-process.html" method="POST">
-                <div class="input-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="input-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="input-group">
-                    <label for="address">Shipping Address</label>
-                    <textarea id="address" name="address" rows="4" required></textarea>
-                </div>
-                <div class="input-group">
-                    <label for="city">City</label>
-                    <input type="text" id="city" name="city" required>
-                </div>
-                <div class="input-group">
-                    <label for="postal-code">Postal Code</label>
-                    <input type="text" id="postal-code" name="postal-code" required>
-                </div>
-                <div class="input-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="text" id="phone" name="phone" required>
-                </div>
-                <div class="input-group">
-                    <label for="payment-method">Payment Method</label>
-                    <select id="payment-method" name="payment-method">
-                        <option value="credit-card">Credit Card</option>
-                        <option value="paypal">PayPal</option>
-                        <option value="cod">Cash on Delivery</option>
-                    </select>
-                </div>
-            </form>
-        </div>
+    <section class="checkout" id="checkout">
+        <!-- Order details will be dynamically inserted here -->
+    </section>
 
-        <!-- Order Summary Section -->
-        <div class="order-summary">
-            <h2>Order Summary</h2>
-            <div class="order-items">
-                <!-- Loop through cart items dynamically here -->
-                <div class="order-item">
-                    <span class="item-name">Landscape T34 (48*36)</span>
-                    <span class="item-price">Rs. 20,999/-</span>
-                    <span class="item-quantity">x1</span>
-                </div>
-
-                <div class="order-item">
-                    <span class="item-name">Landscape T36 (40*60)</span>
-                    <span class="item-price">Rs. 19,999/-</span>
-                    <span class="item-quantity">x2</span>
-                </div>
-
-                <!-- Example of a discount row -->
-                <div class="order-item total">
-                    <span class="item-name">Discount</span>
-                    <span class="item-price">- Rs. 2,000/-</span>
-                </div>
-            </div>
-
-            <!-- Summary Totals -->
-            <div class="order-totals">
-                <div class="total-row">
-                    <span>Subtotal</span>
-                    <span class="total-price">Rs. 40,000/-</span>
-                </div>
-                <div class="total-row">
-                    <span>Shipping</span>
-                    <span class="total-price">Rs. 200/-</span>
-                </div>
-                <div class="total-row">
-                    <span>Taxes</span>
-                    <span class="total-price">Rs. 1,800/-</span>
-                </div>
-
-                <!-- Total Amount -->
-                <div class="total-row total-amount">
-                    <span>Total</span>
-                    <span class="total-price">Rs. 42,000/-</span>
-                </div>
-            </div>
-
-            <!-- Checkout Button -->
-            <a href="order-success.html" class="checkout-btn">Proceed to Checkout</a>
-        </div>
-    </main>
+    <section class="payment-options">
+        <button id="placeOrderBtn">Place Order</button>
+    </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; 2024 AbhiRang. All Rights Reserved.</p>
-    </footer>
+
+    <script>
+        // Fetch checkout details and display order
+        async function fetchCheckoutDetails() {
+            const apiBaseUrl = 'https://turbo-memory-4jjjrppp5wvxf5j5-3000.app.github.dev/';  // Replace with your actual base API URL
+            const userId = localStorage.getItem('user_id');  // Assuming user ID is stored in localStorage
+
+            if (!userId) {
+                alert('Please log in to proceed with checkout.');
+                return;
+            }
+
+            const checkoutEndpoint = `/api/checkout/${userId}`;
+
+            try {
+                const response = await fetch(`${apiBaseUrl}${checkoutEndpoint}`);
+                const checkoutData = await response.json();
+
+                const checkoutSection = document.getElementById('checkout');
+                checkoutSection.innerHTML = `
+                    <h2>Order Summary</h2>
+                    <p>Total Price: ₹${checkoutData.totalPrice}</p>
+                `;
+
+                // Handle order placement
+                const placeOrderBtn = document.getElementById('placeOrderBtn');
+                placeOrderBtn.addEventListener('click', async () => {
+                    const orderEndpoint = `/api/order/place`;
+                    const orderData = { user_id: userId };
+
+                    const placeOrderResponse = await fetch(`${apiBaseUrl}${orderEndpoint}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(orderData)
+                    });
+
+                    const placeOrderData = await placeOrderResponse.json();
+
+                    if (placeOrderData.success) {
+                        window.location.href = 'order-success.html';  // Redirect to success page
+                    } else {
+                        alert('Failed to place order.');
+                    }
+                });
+            } catch (error) {
+                console.error('Error fetching checkout details:', error);
+            }
+        }
+
+        // Call the function when the page loads
+        window.onload = fetchCheckoutDetails;
+    </script>
+
 </body>
+
 </html>
