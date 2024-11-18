@@ -37,40 +37,37 @@ def generate_jwt_token(user_id):
     }
     return jwt.encode(payload, JWT_SECRET_KEY, algorithm='HS256')
 
-# User Registration
 @app.route('/api/register', methods=['POST'])
-def register_user():
-    data = request.get_json()
-    required_fields = ['username', 'email', 'password', 'phone_number', 'user_type']
+def register():
+    data = request.json
+    username = data.get('username')
+    email = data.get('email')
+    phone = data.get('phone')
+    password = data.get('password')
 
-    # Validate all required fields are present
-    for field in required_fields:
-        if field not in data:
-            return jsonify({"error": f"{field} is required"}), 400
-
-    # Check if the user already exists
-    if get_user_by_email(data['email']):
-        return jsonify({"error": "User already exists"}), 400
+    # Validate input
+    if not username or not email or not phone or not password:
+        return jsonify({'message': 'All fields are required.'}), 400
 
     # Hash the password
-    password_hash = generate_password_hash(data['password'])
-    is_verified = 1 if data['user_type'] == 'artist' else 0
+    password_hash = generate_password_hash(password)
 
-    conn = get_db()
-    cursor = conn.cursor()
-    
     try:
-        cursor.execute('''
-            INSERT INTO "user" (username, password_hash, email, phone_number, user_type, is_verified)
-            VALUES (?, ?, ?, ?, ?, ?)
-        ''', (data['username'], password_hash, data['email'], data['phone_number'], data['user_type'], is_verified))
+        # Connect to the database
+        conn = sqlite3.connect('AbhiRang.db')
+        cursor = conn.cursor()
+
+        # Insert into the database
+        cursor.execute('INSERT INTO user (username, email, phone_number, password_hash) VALUES (?, ?, ?, ?)',
+                       (username, email, phone, password_hash))
         conn.commit()
-    except sqlite3.Error as e:
         conn.close()
-        return jsonify({"error": f"Database error: {str(e)}"}), 500
-    
-    conn.close()
-    return jsonify({"message": "Registration successful!"}), 201
+
+        return jsonify({'message': 'Registration successful!'}), 201
+
+    except Exception as e:
+        print(f"Database error: {e}")
+        return jsonify({'message': 'An error occurred during registration.'}), 500
 
 # User Login
 @app.route('/api/login', methods=['POST'])
